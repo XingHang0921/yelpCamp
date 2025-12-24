@@ -1,0 +1,34 @@
+body{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.hero{
+    background-image:
+    url('/images/car.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0) 40%,
+        rgba(0,0,0,0.6) 70%,
+        rgba(0,0,0,0.9) 100%
+    );
+}
+.navbar .nav-link{
+    color: white !important;  /* override Bootstrap color */
+    border-bottom: 0.25rem solid transparent;
+}
+.navbar .navbar-brand{
+    color: white !important;
+}
+.navbar .nav-link:hover{
+    color:  rgba(255,255,255,0.5) !important; 
+    border-bottom-color: rgba(255,255,255,0.5);
+}
