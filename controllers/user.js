@@ -31,6 +31,7 @@ module.exports.renderLoginPage = (req, res)=>{
 }
 module.exports.login = (req,res)=>{
     req.flash('success','welcome back')
+    console.log("LOGIN SUCCESS, USER:", req.user);
     const redirectUrl = res.locals.returnTo || '/campgrounds'
     delete req.session.returnTo
     res.redirect(redirectUrl)

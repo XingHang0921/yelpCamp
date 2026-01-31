@@ -61,17 +61,17 @@ store.on('error', function(e){
 })
 
 const sessionConfig = {
-    store,
-    name:'session',
-    secret: "thisisthetopsecret!",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        // secure:true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
+  store,
+  name: "session",
+  secret: "thisisthetopsecret!",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    // secure:true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
 };
 
 app.use(session(sessionConfig));
@@ -92,29 +92,35 @@ const styleSrcUrls = [
 const connectSrcUrls = [
     "https://api.maptiler.com/",
     "https://github.com/XingHang0921/",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js.map",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css.map",
+    "https://cdn.maptiler.com/maptiler-sdk-js/v3.6.1/maptiler-sdk.umd.min.js.map",
+    "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js.map",
+
 ];
 app.use(
-    helmet.contentSecurityPolicy({
-        directives:{
-            defaultSrc:[],
-            connectSrc:["'self'", ...connectSrcUrls],
-            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-            styleSrc:["'self'", "'unsafe-inline'", ...styleSrcUrls],
-            workerSrc:["'self'", "blob:"],
-            objectSrc:[],
-            imgSrc: [
-                "'self'",
-                "blob:",
-                "data:",
-                "https://res.cloudinary.com/dd9x0c5zo/",
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/",
-                "https://cdn.worldvectorlogo.com/logos/",
-                "https://www.maptiler.com/",
-                "https://api.maptiler.com/",
-                "https://assets.streamlinehq.com/image/private/",
-            ]
-        }
-    }))
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      connectSrc: ["'self'", ...connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      workerSrc: ["'self'", "blob:"],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        "blob:",
+        "data:",
+        "https://res.cloudinary.com/dd9x0c5zo/",
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/",
+        "https://cdn.worldvectorlogo.com/logos/",
+        "https://www.maptiler.com/",
+        "https://api.maptiler.com/",
+        "https://assets.streamlinehq.com/image/private/",
+      ],
+    },
+  }),
+);
 
 app.use(passport.initialize())
 app.use(passport.session());
