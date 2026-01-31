@@ -28,7 +28,7 @@ mongoose.connect(dbUrl);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error: '))
 db.once('open', ()=>{
-    console.log('Database connected')
+    console.log('Database connected: ' , mongoose.connection.name)
 })
 
 const app = express();
@@ -68,7 +68,7 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    // secure:true,
+    secure: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
