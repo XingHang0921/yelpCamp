@@ -7,7 +7,7 @@ module.exports.renderUserPage = (req, res)=>{
     res.render('users/login')
 }
 
-module.exports.registerUser = async(req,res)=>{
+module.exports.registerUser = async(req,res,next)=>{
     try {
         const {email, username, password} = req.body;
         const user = new User({email, username})

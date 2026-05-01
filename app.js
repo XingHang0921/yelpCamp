@@ -68,7 +68,7 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
@@ -129,8 +129,6 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) =>{
-    console.log("locals middleware ran");
-    if (!req.session.returnTo) req.session.returnTo = req.originalUrl;
     res.locals.currentUser = req.user || null;
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
